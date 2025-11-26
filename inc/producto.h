@@ -12,7 +12,8 @@ private:
     string vencimiento_;        	//formato : "YYYY-MM-DD"
     string tipo_almacenamiento_; 	//p.ej. "Refrigerado", "Seco", "Congelado"
     string clasificacion_;          // notas/etiquetas especiales (p.ej. "Sin TACC", "Orgánico")
-
+    // Agregar volumen.
+    // Agregar get_volumen();
 public:
     // --- Constructores ---
     Producto() = default;
