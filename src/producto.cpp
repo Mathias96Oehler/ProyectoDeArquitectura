@@ -1,5 +1,5 @@
 
-#include "Producto.h"
+#include "../inc/Producto.h"
 using namespace std;
 
 // --- Constructor completo ---

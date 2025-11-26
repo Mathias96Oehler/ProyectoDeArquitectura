@@ -28,7 +28,7 @@ public:
     string get_categoria() const;
     string get_vencimiento() const;
     string get_tipo_almacenamiento() const;
-    string get_especial() const;
+    string get_clasificacion() const;
 
     // --- Setters ---
     void set_nombre(const string& nombre);
