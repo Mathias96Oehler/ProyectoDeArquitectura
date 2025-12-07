@@ -1,53 +1,48 @@
 
 #include <iostream>
-#include "../inc/Producto.h"   // o #include "Producto.h" si usás -Iinc
+#include "../inc/Producto.h"
+#include "../inc/Fecha.h"
 using namespace std;
 
 int main() {
-    cout << "===== Prueba de la clase Producto =====\n" << endl;
+    cout << "===== PRUEBA DE CLASE PRODUCTO =====\n" << endl;
 
-    // --- Crear un producto con el constructor completo ---
-    Producto p1("Leche entera", "Comida", "2026-02-15", "Refrigerado", "Sin TACC");
+    // Crear fechas
+    Fecha fecha_vto1(2026, 2, 15);
+    Fecha fecha_vto2(2025, 12, 10);
 
-    cout << "Producto creado con el constructor:\n";
-    cout << p1 << endl;  // usa la sobrecarga de operador <<
+    // Crear productos con constructor completo
+    Producto p1("Leche entera", "Comida", fecha_vto1, "Refrigerado", "Sin TACC", 1000);
+    Producto p2("Detergente", "Limpieza", fecha_vto2, "Seco", "Ecológico", 1500);
 
-    // --- Probar getters ---
-    cout << "\nPrueba de getters individuales:\n";
-    cout << "Nombre: " << p1.get_nombre() << endl;
-    cout << "Categoria: " << p1.get_categoria() << endl;
-    cout << "Vencimiento: " << p1.get_vencimiento() << endl;
-    cout << "Tipo de almacenamiento: " << p1.get_tipo_almacenamiento() << endl;
-    cout << "Clasificacion: " << p1.get_clasificacion() << endl;
+    // Mostrar productos
+    cout << "Producto 1:\n" << p1 << "\n\n";
+    cout << "Producto 2:\n" << p2 << "\n\n";
 
-    // --- Probar setters ---
-    cout << "\nModificando algunos atributos con setters...\n";
+    // Usar getters individuales
+    cout << "Nombre del producto 1: " << p1.get_nombre() << endl;
+    cout << "Vencimiento del producto 1: " << p1.get_vencimiento() << endl;
+    cout << "Volumen del producto 1: " << p1.get_volumen() << " ml\n" << endl;
+
+    // Probar setters
+    cout << "=== Modificando producto 1 ===\n";
     p1.set_nombre("Leche deslactosada");
-    p1.set_vencimiento("2027-01-10");
-    p1.set_tipo_almacenamiento("Seco");
-    p1.set_clasificacion("Orgánico");
+    p1.set_volumen(1200);
+    p1.set_clasificacion("Orgánica");
+    p1.set_vencimiento(Fecha(2027, 5, 30));
 
-    cout << "\nProducto modificado:\n";
-    cout << p1 << endl;
+    cout << "Producto 1 actualizado:\n" << p1 << "\n\n";
 
-    // --- Probar un producto vacío y luego usar setters ---
-    cout << "\nCreando un producto vacío y llenando con setters:\n";
-    Producto p2;
-    p2.set_nombre("Arroz 1kg");
-    p2.set_categoria("Comida");
-    p2.set_vencimiento("2028-05-01");
-    p2.set_tipo_almacenamiento("Seco");
-    p2.set_clasificacion("Sin TACC");
+    // Comparar fechas
+    cout << "=== Comparando fechas ===\n";
+    if (p1.get_vencimiento() > p2.get_vencimiento()) {
+        cout << "El producto 1 vence después que el producto 2.\n";
+    } else if (p1.get_vencimiento() < p2.get_vencimiento()) {
+        cout << "El producto 1 vence antes que el producto 2.\n";
+    } else {
+        cout << "Ambos productos tienen la misma fecha de vencimiento.\n";
+    }
 
-    cout << p2 << endl;
-
-    Producto p3;
-    p3.set_nombre("crema corporal");
-    p3.set_categoria("farmacia");
-
-    cout<< "producto vacio"<< endl;
-    cout<< p3 << endl;
-
-    cout << "\n===== Fin de la prueba =====" << endl;
+    cout << "\n===== FIN DE PRUEBA =====\n";
     return 0;
 }

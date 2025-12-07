@@ -1,29 +1,41 @@
 #include "../inc/fecha.h"
 using namespace std;
 
+// ---         Constructor       ---
+Fecha::Fecha(int anio, int mes, int dia)
+    : anio_(anio), mes_(mes), dia_(dia) {}
 
-// --- constructor --- 
-fecha::fecha(const int año,
-			const int mes,
-			const int dia) 
-	:	año_(año),
-		mes_(mes),
-		dia_(dia) {}
+// ---  Getters ---
+int Fecha::get_anio() const { return anio_; }
+int Fecha::get_mes() const { return mes_; }
+int Fecha::get_dia() const { return dia_; }
 
-// --- Getters --- 
-int fecha::get_año() const { return año_ ;}
-int fecha::get_mes() const { return mes_ ;}
-int fecha::get_dia() const { return dia_ ;}
+// ---     Setters          ---
+void Fecha::set_anio(int anio) { anio_ = anio; }
+void Fecha::set_mes(int mes) { mes_ = mes; }
+void Fecha::set_dia(int dia) { dia_ = dia; }
 
-// --- Setters --- 
+// ---   Sobrecarga de operadores ---
+bool Fecha::operator==(const Fecha& otra) const {
+    return (anio_ == otra.anio_ &&
+            mes_ == otra.mes_ &&
+            dia_ == otra.dia_);
+}
 
-void fecha::set_año(const int año){año_ = año;}
-void fecha::set_año(const int año){mes_ = mes;}
-void fecha::set_año(const int año){dia_ = dia;}
+bool Fecha::operator<(const Fecha& otra) const {
+    if (anio_ != otra.anio_) return anio_ < otra.anio_;
+    if (mes_ != otra.mes_) return mes_ < otra.mes_;
+    return dia_ < otra.dia_;
+}
 
-//--- sobrecarga de operadores --- 
+bool Fecha::operator>(const Fecha& otra) const {
+    if (anio_ != otra.anio_) return anio_ > otra.anio_;
+    if (mes_ != otra.mes_) return mes_ > otra.mes_;
+    return dia_ > otra.dia_;
+}
 
-ostream& operator<<(ostream &os , const fecha& f){
-	os << f.dia_ <<"/"<< f.mes_<<"/"<< f.año_<< "\n" ; 
-	return os; 
+// --- Sobrecarga de salida ---
+ostream& operator<<(ostream& os, const Fecha& f) {
+    os << f.dia_ << "/" << f.mes_ << "/" << f.anio_;
+    return os;
 }
