@@ -6,28 +6,78 @@
 #include <vector>
 #include <list>
 #include "producto.h"
-
+#include "../src/producto.cpp"
+#define NO_EXISTE -1
 using namespace std;
 
 class fila
 {
 private:
-    int largo_;
-    int ancho_;
-    int volumen_neto_;
-    int volumen_total_;
-    bool esta_lista(const list<producto>& lista, producto& prod);
-    int encontrarPosicion(const list<producto>& lista, fecha& valor);
-    list<producto> lista_producto_; 
-public:
-    fila();
-    fila(int largo, int ancho);
+    int largo_;             ///< Largo de la fila.
+    int ancho_;             ///< Ancho de la fila.
+    int volumen_neto_;      ///< Volumen que posee actualmente.
+    int volumen_total_;     ///< Volumen total que puede poseer.
+    list<Producto> lista_producto_; ///< Lista de producto en esa fila.
 
-    ~fila();
-
-    bool add_producto(producto prod);
-
+    /**
+     * @brief Busca entre la lista un producto, si se encuentra, retorna un booleano.
+     *
+     * @param[in]  lista  La lista de productos posibles.
+     * @param      prod   El productos a buscar.
+     *
+     * @return     True: Si existe, False: No existe.
+     */
+    bool esta_lista(const list<Producto>& lista, Producto& prod);
     
+    /**
+     * @brief      Retorna la posicion del producto en la lista.
+     *
+     * @param[in]  lista  La lista.
+     * @param      valor  La Fecha de vencimiento.
+     *
+     * @return     Retorna la posicion, en caso de retornar NO_EXISTE no se encuentra en la fila.
+     */
+    int encontrarPosicion(const list<Producto>& lista, fecha& valor);
+    
+public:
+    
+    /**
+     * @brief      Contrstructor por defualt.
+     */
+    fila();
+    
+    /**
+     * @brief      Constructor para definir estanterias personalizadas.
+     *
+     * @param[in]  largo  El largo.
+     * @param[in]  ancho  El ancho.
+     */
+    fila(int largo, int ancho);
+    
+    /**
+     * @brief      Destructor del objeto.
+     */
+    ~fila();
+    
+    /**
+     * @brief      Añadir producto.
+     *
+     * @param[in]  prod  El producto.
+     *
+     * @return     Retorna un booleano, TRUE: Fue añadido exitozamente.
+     *                                  FALSE: No fue añadido.
+     * @post       Luego de la operacion exitoza, el producto es añadido en su correspondiente lugar.                                  
+     */
+    bool add_producto(Producto prod);
+
+    /**
+     * @brief      Sobrecarga de operador <<, para poder poder compatibilizar a la libreria standar.
+     *
+     * @param      os    The operating system
+     * @param[in]  e     { parameter_description }
+     *
+     * @return     The result of the bitwise left shift
+     */
     friend ostream& operator<<(ostream& os, const fila& e);
 };
 
