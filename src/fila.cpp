@@ -5,18 +5,20 @@
 fila::fila()
 {
     // Unidades de mts.
-    largo_ = 5;
-    ancho_ = 2;
-	volumen_neto_ = 10;
-	volumen_total_ = 0;
+    this->largo_ = 5;
+    this->ancho_ = 2;
+	this->volumen_neto_ = 10;
+	this->volumen_total_ = 0;
+    this->categoria_ = "NN";
 }
 
 fila::fila(int largo, int ancho)
 {
     this->largo_ = largo;
     this->ancho_ = ancho;
-    volumen_neto_ = largo * ancho;
-    volumen_total_ = 0;
+    this->volumen_neto_ = largo * ancho;
+    this->volumen_total_ = 0;
+    this->categoria_ = "NN";
 }
 fila::~fila()
 {
@@ -29,7 +31,7 @@ ostream& operator<<(ostream& os, const fila& e)
        << "  Cantidad de productos: " << e.lista_producto_.size() << "\n"
        << "---------------------------------------------\n";
     
-    for (const auto& prod : e.lista_producto)
+    for (const auto& prod : e.lista_producto_)
     {
         os << "    -> " << prod << "\n";
     }
@@ -37,9 +39,14 @@ ostream& operator<<(ostream& os, const fila& e)
     return os;
 }
 
-bool fila::esta_lista(const list<Producto>& lista, Producto prod)
- {
-    return find(lista.begin(), lista.end(), prod) != lista.end();
+bool fila::pertenece(Producto& prod)
+{
+    bool flag = false;
+    if(this->categoria_ = prod.get_categoria())
+    {
+        flag = true;
+    }
+    return flag;
 }
 
 int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
@@ -54,12 +61,17 @@ int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
     return NO_EXISTE;
 }
 
-bool fila::add_producto(Productoo prod)
+bool fila::add_producto(Producto prod)
 {
     bool flag = false;
     int verificacion = prod.get_volumen() + this->volumen_total_;
 
-    if(verificacion <= this->volumen_neto_) // Verificacion de espacio.
+    if(this->volumen_neto_ == 0)
+    {
+        this->categoria_ = prod.get_categoria();
+    }
+
+    if(verificacion <= this->volumen_neto_ && this->categoria_ = prod.get_categoria()) // Verificacion de espacio.
     {
         int pos = encontrarPosicion(this->lista_producto_, prod.get_fecha());
         if(pos != -1)

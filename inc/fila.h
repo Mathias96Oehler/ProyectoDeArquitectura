@@ -7,27 +7,27 @@
 #include <list>
 #include "producto.h"
 #include "../src/producto.cpp"
-#define NO_EXISTE -1
+#define NO_PERTENECE -1
 using namespace std;
 
 class fila
 {
 private:
-    int largo_;             ///< Largo de la fila.
-    int ancho_;             ///< Ancho de la fila.
-    int volumen_neto_;      ///< Volumen que posee actualmente.
-    int volumen_total_;     ///< Volumen total que puede poseer.
+    int largo_;                     ///< Largo de la fila.
+    int ancho_;                     ///< Ancho de la fila.
+    int volumen_neto_;              ///< Volumen que posee actualmente.
+    int volumen_total_;             ///< Volumen total que puede poseer.
+    string categoria_;              ///< Categoria de la fila.  // aca tengo que empezar a agregar
     list<Producto> lista_producto_; ///< Lista de producto en esa fila.
 
     /**
-     * @brief Busca entre la lista un producto, si se encuentra, retorna un booleano.
+     * @brief verifica si el articulo pertenece a la fila.
      *
-     * @param[in]  lista  La lista de productos posibles.
      * @param      prod   El productos a buscar.
      *
      * @return     True: Si existe, False: No existe.
      */
-    bool esta_lista(const list<Producto>& lista, Producto& prod);
+    bool pertenece(Producto& prod);
     
     /**
      * @brief      Retorna la posicion del producto en la lista.
