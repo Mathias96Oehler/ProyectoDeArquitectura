@@ -54,7 +54,6 @@ int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
     return NO_EXISTE;
 }
 
-// hola gaby , prueba de comit 
 bool fila::add_producto(Producto prod)
 {
     bool flag = false;
@@ -65,7 +64,6 @@ bool fila::add_producto(Producto prod)
         int pos = encontrarPosicion(this->lista_producto_, prod.get_fecha());
         if(pos != -1)
         {
-            int hola = 0 ; 
             auto it = lista_producto_.begin();
             advance(it, pos);
             lista_producto_.insert(it, prod);
