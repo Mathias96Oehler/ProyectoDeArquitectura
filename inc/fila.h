@@ -37,7 +37,7 @@ private:
      *
      * @return     Retorna la posicion, en caso de retornar NO_EXISTE no se encuentra en la fila.
      */
-    int encontrarPosicion(const list<Producto>& lista, fecha& valor);
+    int encontrarPosicion(const list<Producto>& lista, Fecha& valor);
     
 public:
     

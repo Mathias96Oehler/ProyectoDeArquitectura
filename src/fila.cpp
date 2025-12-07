@@ -37,12 +37,12 @@ ostream& operator<<(ostream& os, const fila& e)
     return os;
 }
 
-bool fila::esta_lista(const list<producto>& lista, producto prod)
+bool fila::esta_lista(const list<Producto>& lista, Producto prod)
  {
     return find(lista.begin(), lista.end(), prod) != lista.end();
 }
 
-int fila::encontrarPosicion(const list<producto>& lista, const fecha& valor)
+int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
 {
     int posicion = 0;
     for (const auto& prod : lista) {
@@ -55,7 +55,7 @@ int fila::encontrarPosicion(const list<producto>& lista, const fecha& valor)
 }
 
 
-bool fila::add_producto(producto prod)
+bool fila::add_producto(Producto prod)
 {
     bool flag = false;
     int verificacion = prod.get_volumen() + this->volumen_total_;
