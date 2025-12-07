@@ -54,7 +54,7 @@ int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
     return NO_EXISTE;
 }
 
-bool fila::add_producto(Producto prod)
+bool fila::add_producto(Productoo prod)
 {
     bool flag = false;
     int verificacion = prod.get_volumen() + this->volumen_total_;
