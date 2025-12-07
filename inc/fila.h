@@ -2,6 +2,7 @@
 #define FILA_H
 
 #include <iostream>
+
 #include <vector>
 #include <list>
 #include "producto.h"
@@ -11,20 +12,22 @@ using namespace std;
 class fila
 {
 private:
+    int largo_;
+    int ancho_;
     int volumen_neto_;
     int volumen_total_;
-
-    vector<vector<list<producto>>> matriz_producto;
-
+    bool esta_lista(const list<producto>& lista, producto& prod);
+    int encontrarPosicion(const list<producto>& lista, fecha& valor);
+    list<producto> lista_producto_; 
 public:
-    fila(int fila, int profundidad);
+    fila();
+    fila(int largo, int ancho);
+
     ~fila();
 
+    bool add_producto(producto prod);
 
-    list<producto>& getCelda(int col, int prof) { 
-        return matriz_producto[col][prof];
-    }
-
+    
     friend ostream& operator<<(ostream& os, const fila& e);
 };
 
