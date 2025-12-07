@@ -23,7 +23,7 @@ fila::~fila()
 
 }
 
-ostream& operator<>(ostream& os, const fila& e)
+ostream& operator<<(ostream& os, const fila& e)
 {
     os << "  Volumen total: " << e.volumen_total_ << "\n"
        << "  Cantidad de productos: " << e.lista_producto_.size() << "\n"
@@ -42,16 +42,18 @@ bool fila::esta_lista(const list<producto>& lista, producto prod)
     return find(lista.begin(), lista.end(), prod) != lista.end();
 }
 
-int fila::encontrarPosicion(const list<producto>& lista, const fecha& valor) {
+int fila::encontrarPosicion(const list<producto>& lista, const fecha& valor)
+{
     int posicion = 0;
     for (const auto& prod : lista) {
-        if (prod.get_fecha() == valor) { // Comparar fechas
+        if (prod.get_fecha() == valor) {
             return posicion;
         }
         posicion++;
     }
-    return -1; // No encontrado
+    return NO_EXISTE;
 }
+
 
 bool fila::add_producto(producto prod)
 {
