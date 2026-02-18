@@ -7,8 +7,8 @@ fila::fila()
     // Unidades de mts.
     this->largo_ = 5;
     this->ancho_ = 2;
-	this->volumen_neto_ = 10;
-	this->volumen_total_ = 0;
+	this->volumen_neto_ = 0;
+	this->volumen_total_ = 10;
     this->categoria_ = "NN";
 }
 
@@ -16,8 +16,8 @@ fila::fila(int largo, int ancho)
 {
     this->largo_ = largo;
     this->ancho_ = ancho;
-    this->volumen_neto_ = largo * ancho;
-    this->volumen_total_ = 0;
+    this->volumen_neto_ = 0;
+    this->volumen_total_ = largo * ancho;
     this->categoria_ = "NN";
 }
 fila::~fila()
@@ -64,14 +64,14 @@ int fila::encontrarPosicion(const list<Producto>& lista, const Fecha& valor)
 bool fila::add_producto(Producto prod)
 {
     bool flag = false;
-    int verificacion = prod.get_volumen() + this->volumen_total_;
+    int verificacion = prod.get_volumen() + this->volumen_neto_;
 
-    if(this->volumen_neto_ == 0)
+    if(this->volumen_neto_ == 0)// Si no tiene nada, se convierte en estante de ese produc.
     {
         this->categoria_ = prod.get_categoria();
     }
 
-    if(verificacion <= this->volumen_neto_ && this->categoria_ = prod.get_categoria()) // Verificacion de espacio.
+    if(verificacion <= this->volumen_total_ && this->categoria_ = prod.get_categoria()) // Verificacion de espacio y categoria.
     {
         int pos = encontrarPosicion(this->lista_producto_, prod.get_fecha());
         if(pos != -1)
@@ -79,16 +79,13 @@ bool fila::add_producto(Producto prod)
             auto it = lista_producto_.begin();
             advance(it, pos);
             lista_producto_.insert(it, prod);
-            
-            flag = true;
-            volumen_total_ += prod.get_volumen();
         }
         else
         {
             lista_producto_.push_back(prod);
-            flag = true;
-            volumen_total_ += prod.get_volumen();
         }
+        flag = true;
+        volumen_total_ += prod.get_volumen();
     }
     return flag;
 }
